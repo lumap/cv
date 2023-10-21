@@ -1,10 +1,23 @@
 version: '3'
 
 services:
-  clydedatamines:
+  webserver:
+    image: bun:latest
     build: .
     init: true
-    command: bun run src/app.ts
+    container_name: cv-webserver
+    command: bun run ./src/app.ts
     volumes:
       - .:/usr/app/
       - /usr/app/node_modules
+    ports:
+      - ${PORT}:80
+  # mariadb:
+  #   image: mariadb:latest
+  #   container_name: cv-mariadb
+  #   volumes:
+  #     - ./dump/:/docker-entrypoint-initdb.d
+  #   environment:
+  #     - MARIADB_ROOT_PASSWORD=${DB_ROOT_PW}
+  #     - MARIADB_USER=${DB_USER}
+  #     - MARIADB_PASSWORD=${DB_PASSWORD}
