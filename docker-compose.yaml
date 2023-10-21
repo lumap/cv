@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  clydedatamines:
+    build: .
+    init: true
+    command: bun run src/app.ts
+    volumes:
+      - .:/usr/app/
+      - /usr/app/node_modules
