@@ -2,9 +2,9 @@ version: '3'
 
 services:
   webserver:
-    image: bun:latest
     build: .
     init: true
+    restart: always
     container_name: cv-webserver
     command: bun run ./src/app.ts
     volumes:
@@ -12,12 +12,3 @@ services:
       - /usr/app/node_modules
     ports:
       - ${PORT}:80
-  # mariadb:
-  #   image: mariadb:latest
-  #   container_name: cv-mariadb
-  #   volumes:
-  #     - ./dump/:/docker-entrypoint-initdb.d
-  #   environment:
-  #     - MARIADB_ROOT_PASSWORD=${DB_ROOT_PW}
-  #     - MARIADB_USER=${DB_USER}
-  #     - MARIADB_PASSWORD=${DB_PASSWORD}

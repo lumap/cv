@@ -1,11 +1,8 @@
-import { base } from "./base";
-import { view } from "./view";
+import { view } from "./_view";
 
-export class error extends base {
+export class error {
     async handle(error: number, msg: string) {
         return new view("Oops!")
-            .setVar("error", error)
-            .setVar("msg", msg)
-            .display("error");
+            .display("error", error, msg);
     }
 }

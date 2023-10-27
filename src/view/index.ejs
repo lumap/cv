@@ -1,3 +1,89 @@
 <%- include('./partials/header.ejs') %>
-<h1>Bienvenue!</h1>
+<main>
+
+  <div id="mobile-not-supported-backdrop">
+    <div class="modal">
+      <h1><%=langs[selected].mobileMayBeWorseModal.title%></h1>
+      <p><%=langs[selected].mobileMayBeWorseModal.desc%></p>
+      <p class="ack" onclick="hideMobileModal()"><%=langs[selected].mobileMayBeWorseModal.ack%></p>
+    </div>
+  </div>
+
+  <div class="main-container">
+
+    <div class="header">
+      <h1 id="header-title"><%=langs[selected].header.name%></h1>
+      <p id="header-catchphrase"><%=langs[selected].header.catchPhrase%></p>
+      <hr>
+    </div>
+
+    <div id="cards-container">
+
+      <div class="card" id="card-contact">
+
+        <div>
+          <i class="fa-solid fa-phone"></i>
+          <span><%=langs[selected].contact.phone%></span>
+        </div>
+
+        <div>
+          <i class="fa-solid fa-house"></i>
+          <span><%=langs[selected].contact.address%></span>
+        </div>
+
+        <div>
+          <i class="fa-solid fa-calendar-days"></i>
+          <span><%=langs[selected].contact.bday%></span>
+        </div>
+
+        <div>
+          <i class="fa-solid fa-car"></i>
+          <span><%=langs[selected].contact.canDrive%></span>
+        </div>
+
+        <div>
+          <i class="fa-brands fa-linkedin"></i>
+          <a href="https://linkedin.com<%=langs[selected].contact.linkedin%>"><%=langs[selected].contact.linkedin%></a>
+        </div>
+
+        <div>
+          <i class="fa-brands fa-github"></i>
+          <a href="https://github.com<%=langs[selected].contact.github%>"><%=langs[selected].contact.github%></a>
+        </div>
+
+      </div>
+
+      <div class="card" id="card-softskills">
+
+        <div>
+          <h2><%=langs[selected].about.langsTitle%></h2>
+          <%langs[selected].about.langs.forEach(lang => {%>
+          <p><%=lang%></p>
+          <%});%>
+        </div>
+
+        <div>
+          <h2><%=langs[selected].about.interestsTitle%></h2>
+          <%langs[selected].about.interests.forEach(int => {%>
+          <div id="card-softskills-interest">
+            <%-int.icon%>
+            <p><%=int.title%></p>
+          </div>
+          <%});%>
+        </div>
+
+        <div>
+          <h2><%=langs[selected].about.devLangsToolsTitle%></h2>
+          <div id="card-softskills-devicons">
+            <%langs[selected].about.devLangsTools.forEach(lang => {%>
+            <%-lang%>
+            <%});%>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</main>
 <%- include('./partials/footer.ejs') %>
