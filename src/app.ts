@@ -17,9 +17,11 @@ async function handleRequest(request: Request, server: Server): Promise<Response
     const pathAccessed = "/" + (urlMatch[3]?.split("?")[0] || "");
     if (pathAccessed.includes(".") && existsSync(`./src/assets${pathAccessed}`)) {
         const fileContent = await Bun.file(`./src/assets${pathAccessed}`).text();
+        console.log(getType(`./src/assets${pathAccessed}`));
         return new Response(fileContent, {
             headers: {
-                "content-type": getType(`./src/assets${pathAccessed}`)!
+                "content-type": getType(`./src/assets${pathAccessed}`)!,
+                "Access-Control-Allow-Origin": "*"
             }
         });
     }

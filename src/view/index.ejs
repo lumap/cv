@@ -1,15 +1,15 @@
 <%- include('./partials/header.ejs') %>
 <main>
 
-  <div id="mobile-not-supported-backdrop">
+  <div class="modal-backdrop" id="modal-mobilemayhaveissues">
     <div class="modal">
       <h1><%=langs[selected].mobileMayBeWorseModal.title%></h1>
       <p><%=langs[selected].mobileMayBeWorseModal.desc%></p>
-      <p class="ack" onclick="hideMobileModal()"><%=langs[selected].mobileMayBeWorseModal.ack%></p>
+      <button>OK</button>
     </div>
   </div>
 
-  <div class="main-container">
+  <div class="main-container" id="cv">
 
     <div class="header">
       <h1 id="header-title"><%=langs[selected].header.name%></h1>
@@ -56,15 +56,15 @@
       <div class="card" id="card-softskills">
 
         <div>
-          <h2><%=langs[selected].about.langsTitle%></h2>
-          <%langs[selected].about.langs.forEach(lang => {%>
+          <h2><%=langs[selected].softskills.langsTitle%></h2>
+          <%langs[selected].softskills.langs.forEach(lang => {%>
           <p><%=lang%></p>
           <%});%>
         </div>
 
         <div>
-          <h2><%=langs[selected].about.interestsTitle%></h2>
-          <%langs[selected].about.interests.forEach(int => {%>
+          <h2><%=langs[selected].softskills.interestsTitle%></h2>
+          <%langs[selected].softskills.interests.forEach(int => {%>
           <div id="card-softskills-interest">
             <%-int.icon%>
             <p><%=int.title%></p>
@@ -73,9 +73,9 @@
         </div>
 
         <div>
-          <h2><%=langs[selected].about.devLangsToolsTitle%></h2>
+          <h2><%=langs[selected].softskills.devLangsToolsTitle%></h2>
           <div id="card-softskills-devicons">
-            <%langs[selected].about.devLangsTools.forEach(lang => {%>
+            <%langs[selected].softskills.devLangsTools.forEach(lang => {%>
             <%-lang%>
             <%});%>
           </div>
@@ -83,7 +83,61 @@
 
       </div>
 
+      <div class="card" id="card-formations">
+        <h2><%=langs[selected].formationsTitle%></h2>
+        <% for (let i=0;i<3;i++) { const e = langs[selected].formations[i];%>
+        <div class="formation">
+          <%-e.icon%>
+          <div class="infos">
+            <h3><%=e.title%></h3>
+            <p><%=e.dateLocation%></p>
+          </div>
+        </div>
+        <% } %>
+        <div class="formation" id="see-more-formations">
+          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+          <div class="infos">
+            <p><%=langs[selected].formationsSeeMore%></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="card-jobs">
+        <h2><%=langs[selected].jobsTitle%></h2>
+        <% for (let i=0;i<2;i++) { const j = langs[selected].jobs[i];%>
+        <div class="job">
+          <div class="infos">
+            <i class="fa-solid fa-briefcase"></i>
+            <h3><%=j.name%></h3>
+            <p><%=j.dateLocation%></p>
+            <a href="<%=j.link%>"><i class="fa-solid fa-link"></i></a>
+          </div>
+          <ul>
+            <%j.whatDidIDo.forEach(w => {%>
+            <li><%=w%></li>
+            <%})%>
+          </ul>
+        </div>
+        <% } %>
+        <div class="job" id="see-more-jobs">
+          <div class="infos">
+            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+            <p><%=langs[selected].jobsSeeMore%></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="card-qr">
+        <div id="qrcode"></div>
+      </div>
+
+      <div class="card" id="card-footer">
+        <h2><%=langs[selected].footerTitle%></h2>
+        <p><%=langs[selected].footer%></p>
+      </div>
+
     </div>
   </div>
 </main>
+<button id="savetopdf">Save to PDF</button>
 <%- include('./partials/footer.ejs') %>
