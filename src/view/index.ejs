@@ -1,13 +1,14 @@
 <%- include('./partials/header.ejs') %>
+<div class="modal-root" id="modal-mobilemayhaveissues">
+  <div class="modal-backdrop"></div>
+  <div class="modal">
+    <h1><%=langs[selected].mobileMayBeWorseModal.title%></h1>
+    <p><%=langs[selected].mobileMayBeWorseModal.desc%></p>
+    <button>OK</button>
+  </div>
+</div>
 <main>
 
-  <div class="modal-backdrop" id="modal-mobilemayhaveissues">
-    <div class="modal">
-      <h1><%=langs[selected].mobileMayBeWorseModal.title%></h1>
-      <p><%=langs[selected].mobileMayBeWorseModal.desc%></p>
-      <button>OK</button>
-    </div>
-  </div>
 
   <div class="main-container" id="cv">
 
@@ -83,7 +84,7 @@
 
       </div>
 
-      <div class="card" id="card-formations">
+      <div class="card card-formations">
         <h2><%=langs[selected].formationsTitle%></h2>
         <% for (let i=0;i<3;i++) { const e = langs[selected].formations[i];%>
         <div class="formation">
@@ -94,15 +95,17 @@
           </div>
         </div>
         <% } %>
-        <div class="formation" id="see-more-formations">
+        <div class="see-more-online">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <p><%=langs[selected].seeMoreOnline%></p>
+        </div>
+        <div class="formation see-more" id="see-more-formations">
           <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
-          <div class="infos">
-            <p><%=langs[selected].formationsSeeMore%></p>
-          </div>
+          <p><%=langs[selected].seeMore%></p>
         </div>
       </div>
 
-      <div class="card" id="card-jobs">
+      <div class="card card-jobs">
         <h2><%=langs[selected].jobsTitle%></h2>
         <% for (let i=0;i<2;i++) { const j = langs[selected].jobs[i];%>
         <div class="job">
@@ -119,25 +122,66 @@
           </ul>
         </div>
         <% } %>
-        <div class="job" id="see-more-jobs">
-          <div class="infos">
-            <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
-            <p><%=langs[selected].jobsSeeMore%></p>
-          </div>
+        <div class="see-more-online">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <p><%=langs[selected].seeMoreOnline%></p>
+        </div>
+        <div class="job see-more infos" id="see-more-jobs">
+          <i class="fa-solid fa-up-right-and-down-left-from-center"></i>
+          <p><%=langs[selected].seeMore%></p>
         </div>
       </div>
 
       <div class="card" id="card-qr">
+        <p><%=langs[selected].footer%></p>
+        <br>
         <div id="qrcode"></div>
       </div>
 
       <div class="card" id="card-footer">
-        <h2><%=langs[selected].footerTitle%></h2>
-        <p><%=langs[selected].footer%></p>
+        <p><%=langs[selected].footerReal%></p>
       </div>
 
     </div>
   </div>
 </main>
+
+<div class="modal-root formations-details">
+  <div class="modal-backdrop"></div>
+  <div class="modal card card-formations">
+    <% for (let i=0;i<langs[selected].formations.length;i++) { const e = langs[selected].formations[i];%>
+    <div class="formation">
+      <%-e.icon%>
+      <div class="infos">
+        <h3><%=e.title%></h3>
+        <p><%=e.dateLocation%></p>
+      </div>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<div class="modal-root jobs-details">
+  <div class="modal-backdrop"></div>
+  <div class="modal card card-jobs">
+    <% for (let i=0;i<langs[selected].jobs.length;i++) { const j = langs[selected].jobs[i];%>
+    <div class="job">
+      <div class="infos">
+        <i class="fa-solid fa-briefcase"></i>
+        <h3><%=j.name%></h3>
+        <p><%=j.dateLocation%></p>
+        <a href="<%=j.link%>"><i class="fa-solid fa-link"></i></a>
+      </div>
+      <ul>
+        <%j.whatDidIDo.forEach(w => {%>
+        <li><%=w%></li>
+        <%})%>
+      </ul>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+
 <button id="savetopdf">Save to PDF</button>
 <%- include('./partials/footer.ejs') %>

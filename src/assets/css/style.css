@@ -46,9 +46,12 @@ span {
     padding: 40px;
 }
 
+#modal-mobilemayhaveissues {
+    display: none;
+}
 
 .modal-backdrop {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;
@@ -56,20 +59,21 @@ span {
     top: 0;
     height: 100dvh;
     width: 100dvw;
-    background-color: #000000d9;
+    background-color: #00000068;
     z-index: 100;
 }
 
 .modal {
+    position: absolute;
     padding: 16px;
     background-color: #ffffff;
     box-shadow: 0px 0px 8px 1px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    width: 90vw;
-}
-
-.modal * {
-    font-size: 2dvh;
+    max-width: 50dvw;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -50%) scale(1.3);
+    z-index: 1000;
 }
 
 .header {
@@ -101,14 +105,21 @@ span {
     padding: 16px;
     overflow: auto;
     width: fit-content;
-    cursor: grab;
-    top: 0;
-    left: 0;
     transition: scale ease-in-out .2s;
 }
 
-.card:hover {
+.card:hover:not(.modal) {
+    cursor: grab;
     scale: 1.05;
+}
+
+.card .see-more-online {
+    display: none;
+    justify-content: center;
+}
+
+.card .see-more-online p {
+    font-size: 1.3dvh;
 }
 
 .card#card-contact {
@@ -158,87 +169,90 @@ span {
 
 
 
-.card#card-formations {
+.card.card-formations:not(.modal) {
     left: 40%;
 }
 
-.card#card-formations .formation {
+.card.card-formations .formation {
     display: flex;
     align-items: center;
     padding-top: 3px;
     padding-bottom: 3px;
 }
 
-.card#card-formations .formation h3,
-.card#card-jobs .job h3 {
+.card.card-formations .formation h3,
+.card.card-jobs .job h3 {
     font-size: 1.1dvh;
 }
 
-.card#card-formations .formation p,
-.card#card-jobs .job p {
+.card.card-formations .formation p,
+.card.card-jobs .job p {
     font-size: 1dvh;
 }
 
-.card#card-formations .formation i {
+.card.card-formations .formation i {
     margin-right: 12px;
 }
 
-.card#card-formations #see-more-formations {
+.card.card-formations #see-more-formations {
     cursor: pointer;
     justify-content: center;
     margin-right: 25px;
 }
 
-.card#card-formations #see-more-formations p,
-.card#card-jobs #see-more-jobs p {
+.card.card-formations #see-more-formations p,
+.card.card-jobs #see-more-jobs p {
     font-size: unset;
 }
 
 
 
-.card#card-jobs {
+.card.card-jobs:not(.modal) {
     top: 32%;
     left: 37%;
 }
 
-.card#card-jobs .job {
+.card.card-jobs .job {
     padding-top: 6px;
     padding-bottom: 6px;
 }
 
-.card#card-jobs .job .infos {
+.card.card-jobs .job .infos {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.card#card-jobs .job ul {
+.card.card-jobs .job ul {
     padding-left: 30px;
 }
 
-.card#card-jobs .job img,
-.card#card-jobs .job i {
+.card.card-jobs .job img,
+.card.card-jobs .job i {
     margin-right: 12px;
 }
 
-.card#card-jobs #see-more-jobs .infos {
+.card.card-jobs #see-more-jobs {
+    display: flex;
     cursor: pointer;
     justify-content: center;
     margin-right: 25px;
 }
 
-
-
 .card#card-qr {
     top: 79%;
     left: 0%;
+    max-width: 80%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
 }
 
 .card#card-footer {
-    top: 82%;
-    left: 25%;
+    top: 79%;
+    left: 0%;
+    max-width: 80%;
 }
-
 
 #savetopdf {
     display: fixed;
@@ -246,6 +260,10 @@ span {
     bottom: 0;
 }
 
+.formations-details,
+.jobs-details {
+    display: none;
+}
 
 @media screen and (max-width:630px) {
     #modal-mobilemayhaveissues {
