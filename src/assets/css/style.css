@@ -253,7 +253,7 @@ span {
 .card#card-footer {
     top: 79%;
     left: 0%;
-    max-width: 80%;
+    width: 100%;
 }
 
 #savetopdf {

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $(".card").draggable({ containment: "#cards-container", cursor: "dragging" });
+    $(".card:not(.modal)").draggable({ containment: "#cards-container", cursor: "dragging" });
     $("#modal-mobilemayhaveissues button").on("click", () => {
         $("#modal-mobilemayhaveissues").hide();
     });
@@ -16,16 +16,14 @@ $(document).ready(function () {
         $(".formations-details").fadeIn();
     });
 
-    new QRCode(
-        "qrcode", {
+    new QRCode("qrcode", {
         text: document.location.href,
         width: 80,
         height: 80,
         colorDark: "#000000",
         colorLight: "#FFFFFF",
         correctLevel: QRCode.CorrectLevel.M
-    }
-    );
+    });
 
     $("#savetopdf").on("click", () => {
         $("#card-footer").hide();
